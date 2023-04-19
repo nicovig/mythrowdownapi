@@ -1,13 +1,20 @@
+const bcrypt = require('bcrypt');
+
 const User = require('../models/UserModel');
 
 exports.createUser = (req, res, next) => {
-    delete req.body._id;
-    const user = new User({
-      ...req.body
-    });
-    user.save()
-      .then(() => res.status(201).json({ message: 'Utilisateur enregistré !' }))
-      .catch(error => res.status(400).json({ error }));
+    bcrypt.hash(req.body.password, 10)
+    .then(hash => {
+      delete req.body._id;
+      const user = new User({
+        ...req.body,
+        password: hash
+      });
+      user.save()
+        .then(() => res.status(201).json({ message: 'Utilisateur enregistré !' }))
+        .catch(error => res.status(400).json({ error }));
+    })
+    .catch(error => res.status(500).json({ error }));
 };
 
 exports.deleteUser = (req, res, next) => {

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const authenticationController = require('./controllers/authenticationController');
 const exerciseController = require('./controllers/exerciseController');
+const planController = require('./controllers/planController');
 const userController = require('./controllers/userController');
 
 const app = express();
@@ -22,8 +23,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/exercise', exerciseController);
-app.use('/user', userController);
 app.use('/authentication', authenticationController);
+app.use('/exercise', exerciseController);
+app.use('/planController', planController);
+app.use('/user', userController);
 
 module.exports = app;

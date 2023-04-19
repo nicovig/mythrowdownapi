@@ -5,7 +5,10 @@ const exerciseSchema = mongoose.Schema({
     descriptionFirstLine: { type: String, required: false },
     descriptionSecondLine: { type: String, required: false },
     descriptionThirdLine: { type: String, required: false },
-    videoDemoUrl: { type: String, required: false }
+    videoDemoUrl: { type: String, required: false },
+    wodLines: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'WodLine', required: true }
+    ],
 });
 
 module.exports = mongoose.model('Exercise', exerciseSchema);
