@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const planSchema = mongoose.Schema({
-    planData: { type: Blob, required: true },
+    planData: { type: Object, required: true },
     places: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'Place' }
     ]

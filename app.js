@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const authenticationController = require('./controllers/authenticationController');
-const exerciseController = require('./controllers/exerciseController');
-const planController = require('./controllers/planController');
-const userController = require('./controllers/userController');
+const authenticationRoute = require('./routes/authenticationRoute');
+const exerciseRoute = require('./routes/exerciseRoute');
+const planRoute = require('./routes/planRoute');
+const roleRoute = require('./routes/roleRoute');
+const userRoute = require('./routes/userRoute');
 
 const app = express();
 
@@ -18,14 +19,15 @@ mongoose.connect('mongodb+srv://nicovig:clustertest01@clustertest0.vcn045k.mongo
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
 
-app.use('/authentication', authenticationController);
-app.use('/exercise', exerciseController);
-app.use('/planController', planController);
-app.use('/user', userController);
+app.use('/authentication', authenticationRoute);
+app.use('/exercise', exerciseRoute);
+app.use('/planRoute', planRoute);
+app.use('/role', roleRoute);
+app.use('/user', userRoute);
 
 module.exports = app;

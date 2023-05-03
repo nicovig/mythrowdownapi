@@ -12,7 +12,7 @@ const athleteSchema = mongoose.Schema({
     ],
     team: { type: mongoose.Schema.Types.ObjectId, ref: 'Team', required: false },
     division: { type: mongoose.Schema.Types.ObjectId, ref: 'Division', required: true },
-    profilPicture: { type: Blob, required: false },
+    profilPicture: { type: Object, required: false },
 });
 
 module.exports = mongoose.model('Athlete', athleteSchema);
