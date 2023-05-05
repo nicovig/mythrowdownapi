@@ -8,10 +8,13 @@ const wodLineSchema = mongoose.Schema({
     femaleRepetitions: { type: Number },
     maleRepetitions: { type: Number },
     femaleWeight: { type: Number },
-    maleWeight: { type: Number },
+    maleWeight: { type: Number },    
     units: { type: Number, enum: UnitsEnumValue, default: UnitsEnumValue.Kilograms },
-    addSpacing: { type: Boolean },
-    wod: { type: mongoose.Schema.Types.ObjectId, ref: 'Wod', required: true },
+    textBeforeName: { type: String, required: false },
+    textAfterName: { type: String, required: false },
+    isRepDisplayedAfterName: { type: Boolean, default: false },
+    addSpacing: { type: Boolean, default: false },
+    wodId: { type: Number, required: true },
 });
 
 module.exports = mongoose.model('WodLine', wodLineSchema);

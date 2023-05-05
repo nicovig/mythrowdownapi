@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const eventSchema = mongoose.Schema({
     name: { type: String, required: true },
+    description: { type: String, required: false },
     place: { type: mongoose.Schema.Types.ObjectId, ref: 'Place', required: true },
     day: { type: Date, required: true },
     hour: { type: Number, required: true },
