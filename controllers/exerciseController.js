@@ -11,7 +11,9 @@ exports.createExercise = (req, res, next) => {
         .then(() => res.status(201).json({ message: 'Exercice enregistré !' }))
         .catch(error => res.status(400).json({ error }));
     }
-    res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+    else {
+      res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+    }
 };
 
 exports.deleteExercise = (req, res, next) => {
@@ -20,7 +22,9 @@ exports.deleteExercise = (req, res, next) => {
     .then(() => res.status(200).json({ message: 'Exercice supprimé !'}))
     .catch(error => res.status(400).json({ error }));
   }
-  res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  else {
+    res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  }
 };
 
 exports.getAllExercises = (req, res, next) => {
@@ -29,7 +33,9 @@ exports.getAllExercises = (req, res, next) => {
       .then((exercises) => res.status(200).json(exercises))
       .catch(error => res.status(400).json({ error }));
   }
-  res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  else {
+    res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  }
 };
 
 exports.getExerciseById = (req, res, next) => {
@@ -38,7 +44,9 @@ exports.getExerciseById = (req, res, next) => {
       .then(exercise => res.status(200).json(exercise))
       .catch(error => res.status(404).json({ error }));
   }
-  res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  else {
+    res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  }
 };
 
 exports.updateExercise = (req, res, next) => {
@@ -47,5 +55,7 @@ exports.updateExercise = (req, res, next) => {
     .then(() => res.status(200).json({ message: 'Exercice modifié !' }))
     .catch(error => res.status(400).json({ error }));
   }
-  res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  else {
+    res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
+  }
 };

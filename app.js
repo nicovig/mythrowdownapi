@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const athleteRoute = require('./routes/athleteRoute');
 const authenticationRoute = require('./routes/authenticationRoute');
 const exerciseRoute = require('./routes/exerciseRoute');
 const planRoute = require('./routes/planRoute');
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/athlete', athleteRoute);
 app.use('/authentication', authenticationRoute);
 app.use('/exercise', exerciseRoute);
 app.use('/planRoute', planRoute);
