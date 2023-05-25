@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const athleteRoute = require('./routes/athleteRoute');
 const authenticationRoute = require('./routes/authenticationRoute');
+const divisionRoute = require('./routes/divisionRoute');
 const exerciseRoute = require('./routes/exerciseRoute');
 const planRoute = require('./routes/planRoute');
 const roleRoute = require('./routes/roleRoute');
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 app.use('/athlete', athleteRoute);
 app.use('/authentication', authenticationRoute);
 app.use('/exercise', exerciseRoute);
+app.use('/division', divisionRoute);
 app.use('/planRoute', planRoute);
 app.use('/role', roleRoute);
 app.use('/user', userRoute);
