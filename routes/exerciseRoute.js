@@ -13,6 +13,6 @@ router.get('/:id', auth, exerciseController.getExerciseById);
 
 router.post('/', auth, exerciseController.createExercise);
 
-router.put('/:id', auth, exerciseController.updateExercise);
+router.put('/', auth, exerciseController.updateExercise);
 
 module.exports = router;

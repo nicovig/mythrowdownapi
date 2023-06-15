@@ -1,5 +1,5 @@
 const Exercise = require('../models/ExerciseModel');
-const { isSuperAdminAuthorized, isAdminAuthorized, isUserAuthorized } = require('../helpers/helpers');
+const { isAdminAuthorized, isUserAuthorized } = require('../helpers/helpers');
 
 exports.createExercise = (req, res, next) => {
     if (isAdminAuthorized(req)) {

@@ -1,5 +1,5 @@
 const Athlete = require('../models/AthleteModel');
-const { isSuperAdminAuthorized, isAdminAuthorized, isUserAuthorized } = require('../helpers/helpers');
+const { isAdminAuthorized, isUserAuthorized } = require('../helpers/helpers');
 
 exports.createAthlete = (req, res) => {
   if (isAdminAuthorized(req)) {
@@ -55,7 +55,9 @@ exports.updateAthlete = (req, res) => {
   if (isAdminAuthorized(req)) { 
     Athlete.updateOne({ _id: req.body._id }, { ...req.body, _id: req.body._id })
     .then(() => res.status(200).json({ isOk: true }))
-    .catch(error => res.status(400).json({ error }));
+    .catch(error => {
+      res.status(400).json({ error })
+    });
   }
   else {
     res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});

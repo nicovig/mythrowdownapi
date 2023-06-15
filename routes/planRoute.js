@@ -12,6 +12,6 @@ router.get('/', planController.getPlan);
 
 router.post('/', auth, multer, planController.createPlan);
 
-router.put('/:id', auth, multer, planController.updatePlan);
+router.put('/', auth, multer, planController.updatePlan);
 
 module.exports = router;

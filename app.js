@@ -7,9 +7,15 @@ const divisionRoute = require('./routes/divisionRoute');
 const exerciseRoute = require('./routes/exerciseRoute');
 const planRoute = require('./routes/planRoute');
 const roleRoute = require('./routes/roleRoute');
+const teamRoute = require('./routes/teamRoute');
+const teamFormatRoute = require('./routes/teamFormatRoute');
 const userRoute = require('./routes/userRoute');
 
 const app = express();
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 
 app.use(express.json());
 
@@ -32,6 +38,8 @@ app.use('/exercise', exerciseRoute);
 app.use('/division', divisionRoute);
 app.use('/planRoute', planRoute);
 app.use('/role', roleRoute);
+app.use('/team', teamRoute);
+app.use('/teamFormat', teamFormatRoute);
 app.use('/user', userRoute);
 
 module.exports = app;

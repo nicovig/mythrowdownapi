@@ -1,14 +1,14 @@
-const Division = require('../models/DivisionModel');
+const TeamFormat = require('../models/TeamFormatModel');
 const { isAdminAuthorized, isUserAuthorized } = require('../helpers/helpers');
 
-exports.createDivision = (req, res, next) => {
+exports.createTeamFormat = (req, res, next) => {
     if (isAdminAuthorized(req)) {
       delete req.body._id;
-      const division = new Division({
+      const teamFormat = new TeamFormat({
         ...req.body
       });
-      division.save()
-        .then(() => res.status(201).json({ message: 'Niveau enregistré !' }))
+      teamFormat.save()
+        .then(() => res.status(201).json({ message: 'Format d\'équipe enregistré !' }))
         .catch(error => res.status(400).json({ error }));
     }
     else {
@@ -16,10 +16,10 @@ exports.createDivision = (req, res, next) => {
     }
 };
 
-exports.deleteDivision = (req, res, next) => {
+exports.deleteTeamFormat = (req, res, next) => {
   if (isAdminAuthorized(req)) {
-    Division.deleteOne({ _id: req.params.id })
-    .then(() => res.status(200).json({ message: 'Niveau supprimé !'}))
+    TeamFormat.deleteOne({ _id: req.params.id })
+    .then(() => res.status(200).json({ message: 'Format d\'équipe supprimé !'}))
     .catch(error => res.status(400).json({ error }));
   }
   else {
@@ -27,10 +27,10 @@ exports.deleteDivision = (req, res, next) => {
   }
 };
 
-exports.getAllDivisions = (req, res, next) => {
+exports.getAllTeamFormats = (req, res, next) => {
   if (isUserAuthorized(req)) {
-    Division.find()
-      .then((divisions) => res.status(200).json(divisions))
+    TeamFormat.find()
+      .then((teams) => res.status(200).json(teams))
       .catch(error => res.status(400).json({ error }));
   }
   else {
@@ -38,10 +38,10 @@ exports.getAllDivisions = (req, res, next) => {
   }
 };
 
-exports.getDivisionById = (req, res, next) => {
+exports.getTeamFormatById = (req, res, next) => {
   if (isUserAuthorized(req)) { 
-    Division.findOne({ _id: req.params.id })
-      .then(division => res.status(200).json(division))
+    TeamFormat.findOne({ _id: req.params.id })
+      .then(team => res.status(200).json(team))
       .catch(error => res.status(404).json({ error }));
   }
   else {
@@ -49,10 +49,10 @@ exports.getDivisionById = (req, res, next) => {
   }
 };
 
-exports.updateDivision = (req, res, next) => {
+exports.updateTeamFormat = (req, res, next) => {
   if (isAdminAuthorized(req)) { 
-  Division.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
-    .then(() => res.status(200).json({ message: 'Niveau modifié !' }))
+  TeamFormat.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
+    .then(() => res.status(200).json({ message: 'Format d\'équipe modifié !' }))
     .catch(error => res.status(400).json({ error }));
   }
   else {

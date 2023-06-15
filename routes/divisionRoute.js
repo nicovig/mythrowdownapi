@@ -13,6 +13,6 @@ router.get('/:id', auth, divisionController.getDivisionById);
 
 router.post('/', auth, divisionController.createDivision);
 
-router.put('/:id', auth, divisionController.updateDivision);
+router.put('/', auth, divisionController.updateDivision);
 
 module.exports = router;
