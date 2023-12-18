@@ -41,7 +41,9 @@ exports.getAllTeams = (req, res, next) => {
 exports.getTeamById = (req, res, next) => {
   if (isUserAuthorized(req)) { 
     Team.findOne({ _id: req.params.id })
-      .then(team => res.status(200).json(team))
+      .then(team => {
+        res.status(200).json(team);
+      })
       .catch(error => res.status(404).json({ error }));
   }
   else {
@@ -51,7 +53,7 @@ exports.getTeamById = (req, res, next) => {
 
 exports.updateTeam = (req, res, next) => {
   if (isAdminAuthorized(req)) {
-    Team.updateOne({_id: req.params.id}, {...req.body, _id: req.body._id})
+    Team.updateOne({ _id: req.body.id }, { ...req.body, _id: req.body._id })
       .then((queryResult) => res.status(200).json({ message: 'Équipe modifiée !' }))
       .catch(error => res.status(400).json({ error }));
   }

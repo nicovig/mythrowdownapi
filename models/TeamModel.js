@@ -5,7 +5,10 @@ const teamSchema = mongoose.Schema({
     cumulateScore: [ 
         { type: mongoose.Schema.Types.ObjectId, ref: 'TeamScore', required: false } 
     ],
-    athletes: [
+    femaleAthletes: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Athlete', required: false }
+    ],
+    maleAthletes: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'Athlete', required: false }
     ],
     formatName: { type: String, required: false },

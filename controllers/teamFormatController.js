@@ -1,4 +1,6 @@
 const TeamFormat = require('../models/TeamFormatModel');
+const Team = require('../models/TeamModel');
+
 const { isAdminAuthorized, isUserAuthorized } = require('../helpers/helpers');
 
 exports.createTeamFormat = (req, res, next) => {
@@ -18,9 +20,12 @@ exports.createTeamFormat = (req, res, next) => {
 
 exports.deleteTeamFormat = (req, res, next) => {
   if (isAdminAuthorized(req)) {
-    TeamFormat.deleteOne({ _id: req.params.id })
-    .then(() => res.status(200).json({ message: 'Format d\'équipe supprimé !'}))
-    .catch(error => res.status(400).json({ error }));
+    Team.updateMany({ teamFormat: req.params.id }, {  formatName: '', femaleAthletes: [], maleAthletes: [] })
+    .then(() => {
+      TeamFormat.deleteOne({ _id: req.params.id })
+      .then(() => res.status(200).json({ message: 'Format d\'équipe supprimé !', teamsNumberModified: res.upsertedCount }))
+      .catch(error => res.status(400).json({ error }));
+    }).catch(error => res.status(400).json({ error }));
   }
   else {
     res.status(401).json({ message: 'L\'utilisateur connecté n\'a pas le droit de faire cette action'});
